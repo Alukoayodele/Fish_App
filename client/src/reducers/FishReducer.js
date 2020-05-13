@@ -1,8 +1,17 @@
-import { GET_FISHES, ADD_FISH, FISHES_LOADING } from '../actions/types';
+import {
+  GET_FISHES,
+  ADD_FISH,
+  FISHES_LOADING,
+  SET_CURRENT,
+  CLEAR_CURRENT,
+  UPDATE_FISH,
+  DELETE_FISH,
+} from '../actions/types';
 
 const intialState = {
   fishes: [],
   loading: false,
+  current: null,
 };
 
 export default function (state = intialState, action) {
@@ -17,6 +26,28 @@ export default function (state = intialState, action) {
       return {
         ...state,
         fishes: [action.payload, ...state.fishes],
+      };
+    case UPDATE_FISH:
+      return {
+        ...state,
+        fishes: state.fishes.map((fish) =>
+          fish.id === action.payload.id ? action.payload : fish
+        ),
+      };
+    case DELETE_FISH:
+      return {
+        ...state,
+        fishes: state.fishes.filter((fish) => fish.id !== action.payload),
+      };
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: action.payload,
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null,
       };
     case FISHES_LOADING:
       return {

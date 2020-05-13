@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
 router.patch('/:id', async (req, res, next) => {
   try {
     const result = await db.query(
-      'UPDATE fishes SET name=$1, type=$ WHERE id=$3 RETURNING *',
+      'UPDATE fishes SET name=$1, type=$2 WHERE id=$3 RETURNING *',
       [req.body.name, req.body.type, req.params.id]
     );
     return res.json(result.rows[0]);
