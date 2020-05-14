@@ -14,5 +14,8 @@
     "morgan": "^1.10.0",
     "node-modules": "^1.0.1",
     "pg": "^8.0.3"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }
